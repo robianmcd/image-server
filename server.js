@@ -16,7 +16,7 @@ app.use(function(req, res, next) {
 var images = [
     {url: 'http://i.imgur.com/DuMqW96.jpg', description: 'Owl Creek Pass, Colorado by Stuart Gordon'},
     {url: 'http://i.imgur.com/2CCGvhw.jpg', description: 'This owl is appears enamored with a leaf'},
-    {url: 'http//i.imgur.com/ZM2xE1A.jpg', description: 'This stop sign has a sign under it to remind you that the above stop sign is a stop sign'},
+    {url: 'http://i.imgur.com/ZM2xE1A.jpg', description: 'This stop sign has a sign under it to remind you that the above stop sign is a stop sign'},
     {url: 'http://i.imgur.com/j18XC9i.jpg', description: 'The most boring superhero ever'}
 ];
 
@@ -25,16 +25,18 @@ app.get('/api/images', function (req, res) {
 });
 
 app.post('/api/images', function(req, res) {
-    if(req.body.url && req.body.description && typeof req.body.url === 'string' && typeof req.body.description === 'string') {
-        images.unshift({url: req.body.url, description: req.body.description});
+    var newImage = {url: req.body.url, description: req.body.description};
+
+    if(newImage.url && newImage.description && typeof newImage.url === 'string' && typeof newImage.description === 'string') {
+        images.unshift(newImage);
 
         while(images.length > 20) {
             images.pop();
         }
 
-        res.send(200);
+        res.send(newImage);
     } else {
-        res.send(400, 'Post body must contain a url and a description and they must be strings');
+        res.send(400, {error: 'Post body must contain a url and a description and they must be strings'});
     }
 
 });
