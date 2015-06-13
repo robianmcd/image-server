@@ -6,6 +6,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+
 var images = [
     {url: 'http://i.imgur.com/DuMqW96.jpg', description: 'Owl Creek Pass, Colorado by Stuart Gordon'},
     {url: 'http://i.imgur.com/2CCGvhw.jpg', description: 'This owl is appears enamored with a leaf'},
