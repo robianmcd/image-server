@@ -14,11 +14,11 @@ var images = [
     {url: 'http://i.imgur.com/j18XC9i.jpg', description: 'The most boring superhero ever'}
 ];
 
-app.get('/', function (req, res) {
+app.get('/api/images', function (req, res) {
     res.send(images);
 });
 
-app.post('/', function(req, res) {
+app.post('/api/images', function(req, res) {
     if(req.body.url && req.body.description && typeof req.body.url === 'string' && typeof req.body.description === 'string') {
         images.unshift({url: req.body.url, description: req.body.description});
 
