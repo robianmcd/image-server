@@ -6,6 +6,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+//Enable cors
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 var images = [
     {url: 'http://i.imgur.com/DuMqW96.jpg', description: 'Owl Creek Pass, Colorado by Stuart Gordon'},
